@@ -1,7 +1,7 @@
 class ElementCollection extends Array {
   ready(callback) {
     const isReady = this.some(
-      (e) => e.readyState != null && e.readyState != "loading"
+      (e) => e.readyState && e.readyState != "loading"
     );
     if (isReady) {
       callback();
