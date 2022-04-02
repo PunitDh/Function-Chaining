@@ -66,6 +66,14 @@ class ElementCollection extends Array {
     this.forEach((e) => (e.innerText = content));
     return this;
   }
+
+	first() {
+		return this[0];
+	}
+
+	last() {
+		return this[this.length-1];
+	}
 }
 
 class AjaxPromise {
