@@ -65,6 +65,7 @@ class ElementCollection extends Array {
   }
 
   indicesOf(element) {
+    // TODO
     return this.map((e) => this.indexOf(e)).filter((e) => e);
   }
 
@@ -93,6 +94,15 @@ class ElementCollection extends Array {
       this.forEach((e) => (e.style.display = display));
       return this;
     }
+  }
+
+  centerScreen() {
+    this.display("flex")
+      .alignItems("center")
+      .justifyContent("center")
+      .width("100vw")
+      .height("100vh");
+    return this;
   }
 
   margin(margin) {
@@ -127,11 +137,6 @@ class ElementCollection extends Array {
 
   flexDirection(direction) {
     this.forEach((e) => (e.style.flexDirection = direction));
-    return this;
-  }
-
-  flex(flex) {
-    this.forEach((e) => (e.style.flex = flex));
     return this;
   }
 
@@ -427,6 +432,51 @@ class ElementCollection extends Array {
     return this;
   }
 
+  bgRed() {
+    this.forEach((e) => (e.style.backgroundColor = "red"));
+    return this;
+  }
+
+  bgGreen() {
+    this.forEach((e) => (e.style.backgroundColor = "green"));
+    return this;
+  }
+
+  bgBlue() {
+    this.forEach((e) => (e.style.backgroundColor = "blue"));
+    return this;
+  }
+
+  bgYellow() {
+    this.forEach((e) => (e.style.backgroundColor = "yellow"));
+    return this;
+  }
+
+  bgCyan() {
+    this.forEach((e) => (e.style.backgroundColor = "cyan"));
+    return this;
+  }
+
+  bgMagenta() {
+    this.forEach((e) => (e.style.backgroundColor = "magenta"));
+    return this;
+  }
+
+  bgWhite() {
+    this.forEach((e) => (e.style.backgroundColor = "white"));
+    return this;
+  }
+
+  bgBlack() {
+    this.forEach((e) => (e.style.backgroundColor = "black"));
+    return this;
+  }
+
+  bgGray() {
+    this.forEach((e) => (e.style.backgroundColor = "gray"));
+    return this;
+  }
+
   red() {
     this.forEach((e) => (e.style.color = "red"));
     return this;
@@ -488,6 +538,16 @@ class ElementCollection extends Array {
     } else {
       this.forEach((e) => (e.style.justifyContent = "center"));
     }
+    return this;
+  }
+
+  grid() {
+    this.forEach((e) => (e.style.display = "grid"));
+    return this;
+  }
+
+  flex() {
+    this.forEach((e) => (e.style.display = "flex"));
     return this;
   }
 
@@ -605,6 +665,8 @@ $.get = function ({
 };
 
 String.prototype.indicesOf = function (searchString, position = 0) {
+  console.log("Wf");
+
   const indices = [];
   let index = -1;
   if (typeof searchString === "string" || searchString instanceof String) {
@@ -612,6 +674,7 @@ String.prototype.indicesOf = function (searchString, position = 0) {
       indices.push(index);
     }
   } else if (searchString instanceof Array) {
+    console.log("Wf");
     return searchString.map((string) => this.indexOf(string));
   } else if (searchString instanceof Object) {
     Object.keys(searchString).forEach((key) => {
@@ -636,19 +699,26 @@ Array.prototype.joinEach = function (separator = "") {
   return this.map((e) => e.join(separator));
 };
 
-Array.prototype.first = function () {
+Array.prototype.first = function (operator) {
   // TODO
-  return this[0];
+  if (this[0]) return this[0];
+  else throw new Error("Null Pointer Exception");
 };
 
-Array.prototype.firstOrNull = function () {
+Array.prototype.firstOrNull = function (operator) {
   // TODO
-  return this[0];
+  return this[0] ? this[0] : null;
 };
 
 Array.prototype.second = function () {
   // TODO
-  return this[1];
+  if (this[1]) return this[1];
+  else throw new Error("Null Pointer Exception");
+};
+
+Array.prototype.secondOrNull = function (operator) {
+  // TODO
+  return this[1] ? this[1] : null;
 };
 
 Array.prototype.toUpperCase = function () {
@@ -668,7 +738,7 @@ Object.prototype.keys = function () {
 };
 
 Object.prototype.values = function () {
-  return Object.keys(this);
+  return Object.values(this);
 };
 
 String.prototype.map = function (callback) {
