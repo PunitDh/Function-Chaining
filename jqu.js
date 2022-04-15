@@ -78,6 +78,15 @@ class ElementCollection extends Array {
     }
   }
 
+  setAttribute(attribute, value) {
+    this.forEach((e) => e.setAttribute(attribute, value));
+    return this;
+  }
+
+  getAttribute(attribute) {
+    return this.map((e) => e.getAttribute(attribute)).join("");
+  }
+
   color(col) {
     if (!col) {
       return this.map((e) => e.style.color);
@@ -137,6 +146,16 @@ class ElementCollection extends Array {
 
   flexDirection(direction) {
     this.forEach((e) => (e.style.flexDirection = direction));
+    return this;
+  }
+
+  flexRow() {
+    this.flexDirection("row");
+    return this;
+  }
+
+  flexColumn() {
+    this.flexDirection("column");
     return this;
   }
 
